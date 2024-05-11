@@ -217,7 +217,8 @@
             <div class="header-bottom sticky-header">
                 <div class="container">
                     <div class="header-left">
-                        <div class="dropdown category-dropdown">
+                      @if($admin=="isAdmin")
+                           <div class="dropdown category-dropdown">
                             <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static" title="Browse Categories">
                                 Browse Categories <i class="icon-angle-down"></i>
                             </a>
@@ -241,7 +242,14 @@
                             </div><!-- End .dropdown-menu -->
                         </div><!-- End .category-dropdown -->
                     </div><!-- End .header-left -->
-
+                        @else
+                           <div class="dropdown category-dropdown">
+                            <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static" title="Browse Categories">
+                                home <i class="icon-angle-down"></i>
+                            </a>
+                        </div><!-- End .category-dropdown -->
+                    </div><!-- End .header-left -->
+                    @endif
                     <div class="header-center">
                         <nav class="main-nav">
                             <ul class="menu sf-arrows">

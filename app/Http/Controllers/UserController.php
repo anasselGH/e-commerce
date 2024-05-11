@@ -20,9 +20,9 @@ class UserController extends Controller
     public function index()
     {
         $ses = session()->get('connection');
-
+        $admin = session()->get('admin');
         // $users= Users::all();
-        return view("welcome" ,["ses"=>$ses]);
+        return view("welcome" ,["ses"=>$ses,'admin'=>$admin]);
 
     }
     public function updat(Request $request)
@@ -65,13 +65,19 @@ return redirect()->route('user.index');
      */
     public function store(Request $request)
 {
+    $code="OWFDD205";
     $userData = $request->all();
     // Hash the password
     $userData['password'] = Hash::make($request->input('password'));
-
-    // Create the user
-    User::create($userData);
+    if($request->code==$code){
+        $admin = $request->isAdmin;
+        session()->put('admin',$admin );
     
+    }else{
+        session()->put('admin','not Admin' );
+    }
+    User::create($userData);
+    // Create the user
     return redirect()->route('user.index');
 }
 

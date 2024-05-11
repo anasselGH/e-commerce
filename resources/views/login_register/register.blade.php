@@ -40,7 +40,12 @@
                                             <input type="radio" value="not Admin" name="isAdmin"  class="custom-control-input" id="register-policy1" required>
                                                 <label class="custom-control-label"  for="register-policy1">not Admin</label>
                                             </div><!-- End .custom-checkbox -->
+                                            
                                         </div>
+                                        <div class="form-group">
+                                           <label for="code"> if you are admin plize enter code administration:</label>
+                                            <input type="text" class="form-control" placeholder="code hire" id="code" name="code" >
+                                        </div><!-- End .form-group -->
                                             <!-- <div class="custom-control custom-checkbox">
                                                 <input type="checkbox" class="custom-control-input" id="register-policy" required>
                                                 <label class="custom-control-label" for="register-policy">I agree to the <a href="#">privacy policy</a> *</label>
