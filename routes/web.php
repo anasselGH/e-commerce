@@ -9,17 +9,18 @@ use App\Http\Controllers\UserController;
 
 
 
+use App\Http\Controllers\EtatController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+Route::get('/etats', [EtatController::class, 'index'])->name('etats.index');
+Route::get('/etats/create', [EtatController::class, 'create'])->name('etats.create');
+Route::post('/etats', [EtatController::class, 'store'])->name('etats.store');
+Route::get('/etats/{etat}', [EtatController::class, 'show'])->name('etats.show');
+Route::get('/etats/{etat}/edit', [EtatController::class, 'edit'])->name('etats.edit');
+Route::put('/etats/{etat}', [EtatController::class, 'update'])->name('etats.update');
+Route::delete('/etats/{etat}', [EtatController::class, 'destroy'])->name('etats.destroy');
+
+
+
 
 Route::get('/', [UserController::class, 'index']);
 

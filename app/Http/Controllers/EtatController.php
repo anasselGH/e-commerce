@@ -3,23 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Etat;
+use App\Models\Etats;
+
 class EtatController extends Controller
 {
-    //
     /**
-     * Display a listing of the resource.
+     * Affiche une liste des ressources.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $etats = Etat::all();
+        $etats = Etats::all();
         return view('etats.index', compact('etats'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Affiche le formulaire de création d'une nouvelle ressource.
      *
      * @return \Illuminate\Http\Response
      */
@@ -29,7 +29,7 @@ class EtatController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Stocke une nouvelle ressource dans la base de données.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -39,43 +39,46 @@ class EtatController extends Controller
         $request->validate([
             'etat' => 'required|string',
         ]);
-
-        Etat::create($request->all());
-
+    
+        Etats::create([
+            'etat' => $request->etat
+        ]);
+    
         return redirect()->route('etats.index')
             ->with('success', 'État ajouté avec succès.');
     }
+    
 
     /**
-     * Display the specified resource.
+     * Affiche une ressource spécifique.
      *
-     * @param  \App\Models\Etat  $etat
+     * @param  \App\Models\Etats  $etats
      * @return \Illuminate\Http\Response
      */
-    public function show(Etat $etat)
+    public function show(Etats $etat)
     {
         return view('etats.show', compact('etat'));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Affiche le formulaire d'édition d'une ressource spécifique.
      *
-     * @param  \App\Models\Etat  $etat
+     * @param  \App\Models\Etats  $etats
      * @return \Illuminate\Http\Response
      */
-    public function edit(Etat $etat)
+    public function edit(Etats $etat)
     {
         return view('etats.edit', compact('etat'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Met à jour une ressource spécifique dans la base de données.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Etat  $etat
+     * @param  \App\Models\Etats $etats
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Etat $etat)
+    public function update(Request $request, Etats $etat)
     {
         $request->validate([
             'etat' => 'required|string',
@@ -88,12 +91,12 @@ class EtatController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Supprime une ressource spécifique de la base de données.
      *
-     * @param  \App\Models\Etat  $etat
+     * @param  \App\Models\Etats  $etats
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Etat $etat)
+    public function destroy(Etats $etat)
     {
         $etat->delete();
 
@@ -101,4 +104,3 @@ class EtatController extends Controller
             ->with('success', 'État supprimé avec succès.');
     }
 }
-
