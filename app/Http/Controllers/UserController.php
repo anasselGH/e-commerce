@@ -72,12 +72,11 @@ return redirect()->route('user.index');
     if($request->code==$code){
         $admin = $request->isAdmin;
         session()->put('admin',$admin );
+        User::create($userData);
     
     }else{
         session()->put('admin','not Admin' );
     }
-    User::create($userData);
-    // Create the user
     return redirect()->route('user.index');
 }
 
