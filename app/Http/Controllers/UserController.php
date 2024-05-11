@@ -64,21 +64,22 @@ return redirect()->route('user.index');
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-{
-    $code="OWFDD205";
-    $userData = $request->all();
-    // Hash the password
-    $userData['password'] = Hash::make($request->input('password'));
-    if($request->code==$code){
-        $admin = $request->isAdmin;
-        session()->put('admin',$admin );
-        User::create($userData);
-    
-    }else{
-        session()->put('admin','not Admin' );
+    {
+        $code = "OWFDD205";
+        $userData = $request->all();
+        $userData['password'] = Hash::make($request->input('password'));
+        if ($request->code == $code) {
+            session()->put('isAdmin', "isAdmin");
+            User::create($userData);
+        } else {
+            $userData['isAdmin'] = 'not Admin'; 
+            session()->put('admin', 'not Admin');
+            User::create($userData);
+        }
+        
+        return redirect()->route('user.index');
     }
-    return redirect()->route('user.index');
-}
+    
 
     /**
      * Display the specified resource.
