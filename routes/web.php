@@ -1,11 +1,14 @@
 <?php
 
 use App\Http\Controllers\ModeReglementsController;
-use App\Models\Famille;
+// use App\Models\Famille;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FamilleController;
 use App\Http\Controllers\MarquesController;
 use App\Http\Controllers\UserController;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,8 +30,14 @@ Route::post('/user/logout', [UserController::class, 'logout'])->name('user.logou
 
 
 
+Route::get('/familles', [FamilleController::class, 'index'])->name('familles.index');
+Route::get('/familles/create', [FamilleController::class, 'create'])->name('familles.create');
+Route::post('/familles', [FamilleController::class, 'store'])->name('familles.store');
+Route::get('/familles/{famille}', [FamilleController::class, 'show'])->name('familles.show');
+Route::get('/familles/{famille}/edit', [FamilleController::class, 'edit'])->name('familles.edit');
+Route::put('/familles/{famille}', [FamilleController::class, 'update'])->name('familles.update');
+Route::delete('/familles/{famille}', [FamilleController::class, 'destroy'])->name('familles.destroy');
 
-//Marque
 Route::get('/marques', [MarquesController::class, 'index'])->name('marques.index');
 Route::get('/marques/create', [MarquesController::class, 'create'])->name('marques.create');
 Route::post('/marques', [MarquesController::class, 'store'])->name('marques.store');

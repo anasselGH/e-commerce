@@ -5,14 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class familles extends Model
+class Familles extends Model
 {
     use HasFactory;
 
     protected $fillable = ['libelle', 'image'];
-
-
-    public function sousFamilles(){
-        $this->hasMany(sousFamilles::class);
+    public function getImageAttribute($value)
+    {
+        return $value ?: 'images/default.jpg';
     }
 }
