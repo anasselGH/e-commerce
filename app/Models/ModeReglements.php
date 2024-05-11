@@ -10,7 +10,7 @@ class modeReglements extends Model
     use HasFactory;
 
 
-    protected $fillable = ['mode_reglement'];
+    protected $fillable = ['mode_reglements'];
 
 
     public function commandes(){
