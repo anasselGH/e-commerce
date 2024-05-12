@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FamilleController;
 use App\Http\Controllers\MarquesController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UnitesController;
 
 
 
@@ -57,5 +58,17 @@ Route::get('/mode-reglements/{modeReglement}', [ModeReglementsController::class,
 Route::get('/mode-reglements/{modeReglement}/edit', [ModeReglementsController::class, 'edit'])->name('mode_reglements.edit');
 Route::put('/mode-reglements/{modeReglement}', [ModeReglementsController::class, 'update'])->name('mode_reglements.update');
 Route::delete('/mode-reglements/{modeReglement}', [ModeReglementsController::class, 'destroy'])->name('mode_reglements.destroy');
+
+
+// Define routes for UnitesController
+Route::get('/unites', [UnitesController::class, 'index'])->name('unites.index');
+Route::get('/unites', [UnitesController::class, 'index'])->name('unites.index');
+Route::get('/unites/create', [UnitesController::class, 'create'])->name('unites.create');
+Route::post('/unites', [UnitesController::class, 'store'])->name('unites.store');
+Route::get('/unites/{id}', [UnitesController::class, 'show'])->name('unites.show');
+Route::get('/unites/{id}/edit', [UnitesController::class, 'edit'])->name('unites.edit');
+Route::put('/unites/{id}', [UnitesController::class, 'update'])->name('unites.update');
+Route::delete('/unites/{id}', [UnitesController::class, 'destroy'])->name('unites.destroy');
+
 
 
