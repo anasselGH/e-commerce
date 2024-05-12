@@ -103,17 +103,22 @@ public function show($id)
 }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Unites  $unites
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Unites $unite)
+ * Remove the specified resource from storage.
+ *
+ * @param  int  $id
+ * @return \Illuminate\Http\Response
+ */
+public function destroy($id)
 {
+    // Find the unit by ID
+    $unite = Unites::findOrFail($id);
+
+    // Delete the unit
     $unite->delete();
 
     return redirect()->route('unites.index')
         ->with('success', 'Unité supprimée avec succès.');
 }
+
 
 }

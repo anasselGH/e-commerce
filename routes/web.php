@@ -5,7 +5,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FamilleController;
 use App\Http\Controllers\MarquesController;
 use App\Http\Controllers\UserController;
+
+use App\Http\Controllers\UnitesController;
+
 use App\Http\Controllers\CommandeController;
+
+
+
+
 use App\Http\Controllers\EtatController;
 use App\Http\Controllers\ProduitController;
 
@@ -74,5 +81,17 @@ Route::get('/commandes/{commande}', [CommandeController::class, 'show'])->name('
 Route::get('/commandes/{commande}/edit', [CommandeController::class, 'edit'])->name('commandes.edit');
 Route::put('/commandes/{commande}', [CommandeController::class, 'update'])->name('commandes.update');
 Route::delete('/commandes/{commande}', [CommandeController::class, 'destroy'])->name('commandes.destroy');
+
+
+// Define routes for UnitesController
+Route::get('/unites', [UnitesController::class, 'index'])->name('unites.index');
+Route::get('/unites', [UnitesController::class, 'index'])->name('unites.index');
+Route::get('/unites/create', [UnitesController::class, 'create'])->name('unites.create');
+Route::post('/unites', [UnitesController::class, 'store'])->name('unites.store');
+Route::get('/unites/{id}', [UnitesController::class, 'show'])->name('unites.show');
+Route::get('/unites/{id}/edit', [UnitesController::class, 'edit'])->name('unites.edit');
+Route::put('/unites/{id}', [UnitesController::class, 'update'])->name('unites.update');
+Route::delete('/unites/{id}', [UnitesController::class, 'destroy'])->name('unites.destroy');
+
 
 
