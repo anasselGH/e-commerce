@@ -23,13 +23,18 @@
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="form-group">
+                                <div class="form-check">
+
                                     <label for="regle">Règle:</label>
-                                    <input type="text" class="form-control @error('regle') is-invalid @enderror" id="regle" name="regle" value="{{ old('regle') }}" required>
-                                    @error('regle')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
+
+                                        <input type="radio" class="form-check-input" id="regle_oui" name="regle" value="Oui" {{ old('regle') == 'Oui' ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="regle_oui">Oui</label>
+                                    
+                                    
+                                        <input type="radio" class="form-check-input" id="regle_non" name="regle" value="Non" {{ old('regle') == 'Non' ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="regle_non">Non</label>
+                                    </div>
+                                
                                 <div class="form-group">
                                     <label for="mode_reglement_id">Mode de règlement:</label>
                                     <select class="form-control @error('mode_reglement_id') is-invalid @enderror" id="mode_reglement_id" name="mode_reglement_id" required>
