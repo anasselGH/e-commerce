@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ModeReglementsController;
-// use App\Models\Famille;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FamilleController;
 use App\Http\Controllers\MarquesController;
