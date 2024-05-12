@@ -3,107 +3,79 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Commande;
+use App\Models\Commandes;
+use App\Models\ModeReglements;
+use App\Models\Etats;
 use App\Models\User;
-use App\Models\Modereglement;
-use App\Models\Etat;
+
+
+
+
+
 class CommandeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $commandes = Commande::all();
+        $commandes = Commandes::all();
         return view('commandes.index', compact('commandes'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
-    {
-        $users = User::all();
-        $etats = Etat::all();
-        
-        $modesReglement = Modereglement::all();
-        return view('commandes.create', compact('users','etats','modesReglement'));
-    }
+{
+    $modesReglement = ModeReglements::all();
+    $etats = Etats::all();
+    $users = User::all();
+    return view('commandes.create', compact('modesReglement', 'etats', 'users'));
+}
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        $request->validate([
-            // Define your validation rules here
+        $validatedData = $request->validate([
+            'date' => 'required|date',
+            'heure' => 'required',
+            'regle' => 'required|string',
+            'mode_reglement_id' => 'required|exists:mode_reglements,id',
+            'etat_id' => 'required|exists:etats,id',
+            'user_id' => 'required|exists:users,id',
         ]);
 
-        Commande::create($request->all());
+        Commandes::create($validatedData);
 
         return redirect()->route('commandes.index')
-            ->with('success', 'Commande created successfully.');
+            ->with('success', 'Commande ajoutée avec succès.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Commande  $commande
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Commande $commande)
+    public function show(Commandes $commande)
     {
         return view('commandes.show', compact('commande'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Commande  $commande
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Commande $commande)
+    public function edit(Commandes $commande)
     {
         return view('commandes.edit', compact('commande'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Commande  $commande
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Commande $commande)
-    {
-        $request->validate([
-            // Define your validation rules here
-        ]);
+    public function update(Request $request, Commandes $commande)
+{
+    $validatedData = $request->validate([
+        'date' => 'required|date',
+        'heure' => 'required',
+        'regle' => 'required|string',
+        // Add validation rules for other fields if needed
+    ]);
 
-        $commande->update($request->all());
+    $commande->update($validatedData);
 
-        return redirect()->route('commandes.index')
-            ->with('success', 'Commande updated successfully.');
-    }
+    return redirect()->route('commandes.index')->with('success', 'Commande mise à jour avec succès.');
+}
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Commande  $commande
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Commande $commande)
+
+    public function destroy(Commandes $commande)
     {
         $commande->delete();
 
         return redirect()->route('commandes.index')
-            ->with('success', 'Commande deleted successfully.');
+            ->with('success', 'Commande supprimée avec succès.');
     }
 }
