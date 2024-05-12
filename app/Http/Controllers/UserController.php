@@ -69,7 +69,8 @@ return redirect()->route('user.index');
         $userData = $request->all();
         $userData['password'] = Hash::make($request->input('password'));
         if ($request->code == $code) {
-            session()->put('isAdmin', "isAdmin");
+            $userData['isAdmin'] = 'isAdmin'; 
+            session()->put('admin', "isAdmin");
             User::create($userData);
         } else {
             $userData['isAdmin'] = 'not Admin'; 
@@ -78,7 +79,7 @@ return redirect()->route('user.index');
         }
         
         return redirect()->route('user.index');
-    }
+}
     
 
     /**

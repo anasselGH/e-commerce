@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
+
+
 class commandes extends Model
 {
     use HasFactory;
@@ -14,7 +17,7 @@ class commandes extends Model
 
     public function users(){
         return 
-            $this->belongsTo(users::class);
+            $this->belongsTo(user::class);
     }
 
 

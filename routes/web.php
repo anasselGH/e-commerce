@@ -1,15 +1,22 @@
 <?php
 
 use App\Http\Controllers\ModeReglementsController;
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FamilleController;
 use App\Http\Controllers\MarquesController;
 use App\Http\Controllers\UserController;
-
-
-
+use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\EtatController;
+use App\Http\Controllers\ProduitController;
+
+// Routes for Produits
+Route::get('/produits', [ProduitController::class, 'index'])->name('produits.index');
+Route::get('/produits/create', [ProduitController::class, 'create'])->name('produits.create');
+Route::post('/produits', [ProduitController::class, 'store'])->name('produits.store');
+Route::get('/produits/{produit}', [ProduitController::class, 'show'])->name('produits.show');
+Route::get('/produits/{produit}/edit', [ProduitController::class, 'edit'])->name('produits.edit');
+Route::put('/produits/{produit}', [ProduitController::class, 'update'])->name('produits.update');
+Route::delete('/produits/{produit}', [ProduitController::class, 'destroy'])->name('produits.destroy');
 
 Route::get('/etats', [EtatController::class, 'index'])->name('etats.index');
 Route::get('/etats/create', [EtatController::class, 'create'])->name('etats.create');
@@ -23,14 +30,13 @@ Route::delete('/etats/{etat}', [EtatController::class, 'destroy'])->name('etats.
 
 
 Route::get('/', [UserController::class, 'index']);
-
 Route::resource('familles', FamilleController::class);
 Route::resource('user', UserController::class);
 Route::post('/user/update', [UserController::class, 'updat'])->name('user.updat');
 Route::post('/user/logout', [UserController::class, 'logout'])->name('user.logout');
 
 
-
+//Familles
 Route::get('/familles', [FamilleController::class, 'index'])->name('familles.index');
 Route::get('/familles/create', [FamilleController::class, 'create'])->name('familles.create');
 Route::post('/familles', [FamilleController::class, 'store'])->name('familles.store');
@@ -38,7 +44,7 @@ Route::get('/familles/{famille}', [FamilleController::class, 'show'])->name('fam
 Route::get('/familles/{famille}/edit', [FamilleController::class, 'edit'])->name('familles.edit');
 Route::put('/familles/{famille}', [FamilleController::class, 'update'])->name('familles.update');
 Route::delete('/familles/{famille}', [FamilleController::class, 'destroy'])->name('familles.destroy');
-
+//Marques
 Route::get('/marques', [MarquesController::class, 'index'])->name('marques.index');
 Route::get('/marques/create', [MarquesController::class, 'create'])->name('marques.create');
 Route::post('/marques', [MarquesController::class, 'store'])->name('marques.store');
@@ -57,5 +63,16 @@ Route::get('/mode-reglements/{modeReglement}', [ModeReglementsController::class,
 Route::get('/mode-reglements/{modeReglement}/edit', [ModeReglementsController::class, 'edit'])->name('mode_reglements.edit');
 Route::put('/mode-reglements/{modeReglement}', [ModeReglementsController::class, 'update'])->name('mode_reglements.update');
 Route::delete('/mode-reglements/{modeReglement}', [ModeReglementsController::class, 'destroy'])->name('mode_reglements.destroy');
+
+//Commandes
+
+
+Route::get('/commandes', [CommandeController::class, 'index'])->name('commandes.index');
+Route::get('/commandes/create', [CommandeController::class, 'create'])->name('commandes.create');
+Route::post('/commandes', [CommandeController::class, 'store'])->name('commandes.store');
+Route::get('/commandes/{commande}', [CommandeController::class, 'show'])->name('commandes.show');
+Route::get('/commandes/{commande}/edit', [CommandeController::class, 'edit'])->name('commandes.edit');
+Route::put('/commandes/{commande}', [CommandeController::class, 'update'])->name('commandes.update');
+Route::delete('/commandes/{commande}', [CommandeController::class, 'destroy'])->name('commandes.destroy');
 
 

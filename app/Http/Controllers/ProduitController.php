@@ -3,24 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Produit;
-use App\Models\Sousfamille;
-use App\Models\Marque ;
-use App\Models\Unites;
+use App\Models\produits;
+use App\Models\sousFamilles;
+use App\Models\marques ;
+use App\Models\unites;
 
 class ProduitController extends Controller
 {
     public function index()
     {
-        $produits = Produit::all();
+        $produits = produits::all();
         return view('produits.index', compact('produits'));
     }
 
     public function create()
 {
-    $sousfamilles = Sousfamille::all();
-    $marques = Marque::all();
-    $unites = Unites::all();
+    $sousfamilles = sousFamilles::all();
+    $marques = marques::all();
+    $unites = unites::all();
     
     return view('produits.create', compact('sousfamilles', 'marques', 'unites'));
 }
@@ -35,7 +35,7 @@ class ProduitController extends Controller
             'tva' => 'required|numeric',
             'description' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // image validation
-            'sous_famille_id' => 'required|exists:sousfamilles,id',
+            'sous_famille_id' => 'required',
             'marque_id' => 'required|exists:marques,id',
             'unite_id' => 'required|exists:unites,id',
         ]);
@@ -47,32 +47,32 @@ class ProduitController extends Controller
             $validatedData['image'] = $imagePath;
         }
 
-        Produit::create($validatedData);
+        produits::create($validatedData);
 
         return redirect()->route('produits.index')->with('success', 'Produit ajouté avec succès.');
     }
 
-    public function show(Produit $produit)
+    public function show( produits $produit)
     {
         return view('produits.show', compact('produit'));
     }
 
-    public function edit(Produit $produit)
+    public function edit(produits $produit)
     {
-        $sousfamilles = Sousfamille::all();
-        $marques = Marque::all();
-        $unites = Unites::all();
+        $sousfamilles = sousFamilles::all();
+        $marques = marques::all();
+        $unites = unites::all();
         return view('produits.edit', compact('produit', 'sousfamilles','marques','unites'));
     }
 
-    public function update(Request $request, Produit $produit)
+    public function update(Request $request, produits $produit)
     {
         $request->validate([
             'codebarre' => 'required|numeric',
             'designation' => 'required|string',
             'prix_ht' => 'required|numeric',
             'tva' => 'required|numeric',
-            'sous_famille_id' => 'required|exists:sousfamilles,id',
+            'sous_famille_id' => 'required',
             'marque_id' => 'required|exists:marques,id',
             'unite_id' => 'required|exists:unites,id',
         ]);
@@ -82,7 +82,7 @@ class ProduitController extends Controller
         return redirect()->route('produits.index')->with('success', 'Produit mis à jour avec succès.');
     }
 
-    public function destroy(Produit $produit)
+    public function destroy(produits $produit)
     {
         $produit->delete();
 
