@@ -14,6 +14,7 @@ return new class extends Migration
             $table->double('prix_ht', 10, 2);
             $table->double('tva', 10, 2);
             $table->text('designation');
+            $table->text('description');
             $table->string('image', 200);
             $table->unsignedBigInteger('sous_famille_id');
             $table->unsignedBigInteger('marque_id');

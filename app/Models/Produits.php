@@ -2,32 +2,29 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class produits extends Model
 {
-    use HasFactory;
-
     protected $fillable = ['codebarre', 'designation', 'prix_ht', 'tva', 'description', 'image', 'sous_famille_id', 'marque_id', 'unite_id'];
 
-    public function detailsCommandes(){
-        $this->hasMay(detailsCommandes::class);
+    public function detailsCommandes()
+    {
+        return $this->hasMany(DetailsCommande::class);
     }
 
-
-    public function sousFamilles(){
-        $this->belongsTo(sousFamilles::class);
+    public function sousFamille()
+    {
+        return $this->belongsTo(sousFamilles::class, 'sous_famille_id');
     }
 
-
-    public function marques(){
-        $this->belongsTo(marques::class);
+    public function marque()
+    {
+        return $this->belongsTo(marques::class, 'marque_id');
     }
 
-
-
-    public function unites(){
-        $this->belongsTo(unites::class);
+    public function unite()
+    {
+        return $this->belongsTo(unites::class, 'unite_id');
     }
 }

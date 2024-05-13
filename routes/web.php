@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\ModeReglementsController;
-// use App\Models\Famille;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FamilleController;
 use App\Http\Controllers\MarquesController;
@@ -9,13 +8,26 @@ use App\Http\Controllers\UserController;
 
 use App\Http\Controllers\UnitesController;
 
+<<<<<<< HEAD
 use App\Http\Controllers\SousFamillesController;
+=======
+>>>>>>> c869a97a2b41769c8826145d619aa548ae9f0aba
 use App\Http\Controllers\CommandeController;
 
 
 
 
 use App\Http\Controllers\EtatController;
+use App\Http\Controllers\ProduitController;
+
+// Routes for Produits
+Route::get('/produits', [ProduitController::class, 'index'])->name('produits.index');
+Route::get('/produits/create', [ProduitController::class, 'create'])->name('produits.create');
+Route::post('/produits', [ProduitController::class, 'store'])->name('produits.store');
+Route::get('/produits/{produit}', [ProduitController::class, 'show'])->name('produits.show');
+Route::get('/produits/{produit}/edit', [ProduitController::class, 'edit'])->name('produits.edit');
+Route::put('/produits/{produit}', [ProduitController::class, 'update'])->name('produits.update');
+Route::delete('/produits/{produit}', [ProduitController::class, 'destroy'])->name('produits.destroy');
 
 Route::get('/etats', [EtatController::class, 'index'])->name('etats.index');
 Route::get('/etats/create', [EtatController::class, 'create'])->name('etats.create');
@@ -29,7 +41,6 @@ Route::delete('/etats/{etat}', [EtatController::class, 'destroy'])->name('etats.
 
 
 Route::get('/', [UserController::class, 'index']);
-
 Route::resource('familles', FamilleController::class);
 Route::resource('user', UserController::class);
 Route::post('/user/update', [UserController::class, 'updat'])->name('user.updat');
