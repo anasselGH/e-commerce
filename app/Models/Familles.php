@@ -14,4 +14,5 @@ class Familles extends Model
     {
         return $value ?: 'images/default.jpg';
     }
+   
 }

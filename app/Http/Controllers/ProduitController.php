@@ -3,25 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Produit;
-use App\Models\Sousfamille;
-use App\Models\Marque ;
+use App\Models\produits;
+use App\Models\Sousfamilles;
+use App\Models\Marques ;
 use App\Models\Unites;
+use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 
 class ProduitController extends Controller
 {
     public function index()
     {
-        $produits = Produit::all();
+        $produits = produits::all();
         return view('produits.index', compact('produits'));
     }
 
     public function create()
 {
-    $sousfamilles = Sousfamille::all();
-    $marques = Marque::all();
+    $sousfamilles = Sousfamilles::all();
+    $marques = Marques::all();
     $unites = Unites::all();
-    
+
     return view('produits.create', compact('sousfamilles', 'marques', 'unites'));
 }
 
@@ -47,25 +48,25 @@ class ProduitController extends Controller
             $validatedData['image'] = $imagePath;
         }
 
-        Produit::create($validatedData);
+        Produits::create($validatedData);
 
         return redirect()->route('produits.index')->with('success', 'Produit ajouté avec succès.');
     }
 
-    public function show(Produit $produit)
+    public function show(Produits $produit)
     {
         return view('produits.show', compact('produit'));
     }
 
-    public function edit(Produit $produit)
+    public function edit(Produits $produit)
     {
-        $sousfamilles = Sousfamille::all();
-        $marques = Marque::all();
+        $sousfamilles = Sousfamilles::all();
+        $marques = MapRequestPayload::all();
         $unites = Unites::all();
         return view('produits.edit', compact('produit', 'sousfamilles','marques','unites'));
     }
 
-    public function update(Request $request, Produit $produit)
+    public function update(Request $request, Produits $produit)
     {
         $request->validate([
             'codebarre' => 'required|numeric',
@@ -82,7 +83,7 @@ class ProduitController extends Controller
         return redirect()->route('produits.index')->with('success', 'Produit mis à jour avec succès.');
     }
 
-    public function destroy(Produit $produit)
+    public function destroy(Produits $produit)
     {
         $produit->delete();
 

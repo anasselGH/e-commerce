@@ -6,11 +6,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FamilleController;
 use App\Http\Controllers\MarquesController;
 use App\Http\Controllers\UserController;
-<<<<<<< HEAD
+
 use App\Http\Controllers\UnitesController;
-=======
+
+use App\Http\Controllers\SousFamillesController;
 use App\Http\Controllers\CommandeController;
->>>>>>> ee967bf281b773f4071e1ab4c15ae662d7df57da
+
 
 
 
@@ -87,3 +88,11 @@ Route::delete('/unites/{id}', [UnitesController::class, 'destroy'])->name('unite
 
 
 
+// Route pour des sous-familles
+Route::get('/sous-familles', [SousFamillesController::class, 'index'])->name('sousFamilles.index');
+Route::get('/sous-familles/create', [SousFamillesController::class, 'create'])->name('sousFamilles.create');
+Route::post('/sous-familles', [SousFamillesController::class, 'store'])->name('sousFamilles.store');
+Route::get('/sous-familles/{sousFamille}', [SousFamillesController::class, 'show'])->name('sousFamilles.show');
+Route::get('/sous-familles/{sousFamille}/edit', [SousFamillesController::class, 'edit'])->name('sousFamilles.edit');
+Route::put('/sous-familles/{sousFamille}', [SousFamillesController::class, 'update'])->name('sousFamilles.update');
+Route::delete('/sous-familles/{sousFamille}', [SousFamillesController::class, 'destroy'])->name('sousFamilles.destroy');
