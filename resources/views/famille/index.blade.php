@@ -23,6 +23,7 @@
                             <img src="{{ asset('storage/' . $famille->image) }}" alt="Image de famille" style="max-width: 100px;">
                             @else
                             Aucune image disponible
+                            
                             @endif
                         </td>
                         <td>
