@@ -12,12 +12,13 @@ class sousFamilles extends Model
     protected $fillable = ['libelle', 'image', 'famille_id'];
 
 
-    public function familles(){
-        $this->belongsTo(familles::class);
+    public function familles()
+    {
+        return $this->belongsTo(Familles::class);
     }
 
-
-    public function produits(){
-        $this->hasMany(produits::class);
+    public function produits()
+    {
+        return $this->hasMany(Produits::class);
     }
 }

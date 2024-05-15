@@ -6,6 +6,11 @@ use App\Http\Controllers\FamilleController;
 use App\Http\Controllers\MarquesController;
 use App\Http\Controllers\ModeReglementsController;
 use App\Http\Controllers\UnitesController;
+
+use App\Http\Controllers\SousFamillesController;
+
+>>>>>>> c869a97a2b41769c8826145d619aa548ae9f0aba
+>>>>>>> 0a240f14f0003df55a510dfb6bb46ed3958bd505
 use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\EtatController;
 use App\Http\Controllers\ProduitController;
@@ -91,3 +96,11 @@ Route::delete('/unites/{id}', [UnitesController::class, 'destroy'])->name('unite
 
 
 
+// Route pour des sous-familles
+Route::get('/sous-familles', [SousFamillesController::class, 'index'])->name('sousFamilles.index');
+Route::get('/sous-familles/create', [SousFamillesController::class, 'create'])->name('sousFamilles.create');
+Route::post('/sous-familles', [SousFamillesController::class, 'store'])->name('sousFamilles.store');
+Route::get('/sous-familles/{sousFamille}', [SousFamillesController::class, 'show'])->name('sousFamilles.show');
+Route::get('/sous-familles/{sousFamille}/edit', [SousFamillesController::class, 'edit'])->name('sousFamilles.edit');
+Route::put('/sous-familles/{sousFamille}', [SousFamillesController::class, 'update'])->name('sousFamilles.update');
+Route::delete('/sous-familles/{sousFamille}', [SousFamillesController::class, 'destroy'])->name('sousFamilles.destroy');

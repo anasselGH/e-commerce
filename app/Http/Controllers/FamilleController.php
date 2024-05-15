@@ -15,7 +15,7 @@ class FamilleController extends Controller
         $familles = Familles::all();
         return view("famille.index", ["familles" => $familles]);
     }
-    
+
     /**
      * Show the form for creating a new resource.
      */
@@ -33,20 +33,20 @@ class FamilleController extends Controller
             'libelle' => 'required|string|max:200',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:20480',
         ]);
-    
+
         $famille = new Familles();
         $famille->libelle = $request->input('libelle');
-    
+
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('images', 'public');
             $famille->image = $imagePath;
         }
-    
+
         $famille->save();
-    
+
         return redirect()->route('familles.index')->with('success', 'Famille created successfully.');
     }
-    
+
 
     /**
      * Display the specified resource.
@@ -72,7 +72,7 @@ class FamilleController extends Controller
         $famille->libelle = $request->input('libelle');
         $famille->image = $request->input('image');
         $famille->save();
-        
+
         return redirect()->route('familles.index')->with('success', 'Famille updated successfully.');
     }
 
@@ -82,7 +82,7 @@ class FamilleController extends Controller
     public function destroy(Familles $famille)
     {
         $famille->delete();
-        
+
         return redirect()->route('familles.index')->with('success', 'Famille deleted successfully.');
     }
 }
