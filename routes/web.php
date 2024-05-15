@@ -1,20 +1,23 @@
 <?php
 
-use App\Http\Controllers\ModeReglementsController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\FamilleController;
 use App\Http\Controllers\MarquesController;
-use App\Http\Controllers\UserController;
-
+use App\Http\Controllers\ModeReglementsController;
 use App\Http\Controllers\UnitesController;
-
 use App\Http\Controllers\CommandeController;
-
-
-
-
 use App\Http\Controllers\EtatController;
 use App\Http\Controllers\ProduitController;
+
+Route::get('/', [UserController::class, 'index']);
+Route::resource('familles', FamilleController::class);
+Route::resource('user', UserController::class);
+Route::post('/user/update', [UserController::class, 'updat'])->name('user.updat');
+Route::post('/user/logout', [UserController::class, 'logout'])->name('user.logout');
+
+
+
 
 // Routes for Produits
 Route::get('/produits', [ProduitController::class, 'index'])->name('produits.index');
@@ -34,13 +37,6 @@ Route::put('/etats/{etat}', [EtatController::class, 'update'])->name('etats.upda
 Route::delete('/etats/{etat}', [EtatController::class, 'destroy'])->name('etats.destroy');
 
 
-
-
-Route::get('/', [UserController::class, 'index']);
-Route::resource('familles', FamilleController::class);
-Route::resource('user', UserController::class);
-Route::post('/user/update', [UserController::class, 'updat'])->name('user.updat');
-Route::post('/user/logout', [UserController::class, 'logout'])->name('user.logout');
 
 
 //Familles
