@@ -226,9 +226,10 @@
                             <div class="dropdown-menu">
                                 <nav class="side-nav">
                                     <ul class="menu-vertical sf-arrows">
+                                        {{-- <li><a href="{{ route('marques.index') }}">Lighting</a></li> --}}
                                         <li class="item-lead"><a href="#">Daily offers</a></li>
                                         <li class="item-lead"><a href="#">Gift Ideas</a></li>
-                                        <li><a href="#">Beds</a></li>
+                                        <li><a href="">Beds</a></li>
                                         <li><a href="#">Lighting</a></li>
                                         <li><a href="#">Sofas & Sleeper sofas</a></li>
                                         <li><a href="#">Storage</a></li>

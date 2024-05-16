@@ -1,6 +1,7 @@
 {{-- @extends('layouts.app')
 
 @section('content') --}}
+{{-- <livewire:home/> --}}
     <div class="container">
         <h1>Familles</h1>
         <a href="{{ route('familles.create') }}" class="btn btn-primary">Create New Famille</a>

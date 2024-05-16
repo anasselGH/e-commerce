@@ -6,14 +6,11 @@ use App\Http\Controllers\FamilleController;
 use App\Http\Controllers\MarquesController;
 use App\Http\Controllers\ModeReglementsController;
 use App\Http\Controllers\UnitesController;
-
 use App\Http\Controllers\SousFamillesController;
-
->>>>>>> c869a97a2b41769c8826145d619aa548ae9f0aba
->>>>>>> 0a240f14f0003df55a510dfb6bb46ed3958bd505
 use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\EtatController;
 use App\Http\Controllers\ProduitController;
+use App\Http\Controllers\DetailcommandeController;
 
 Route::get('/', [UserController::class, 'index']);
 Route::resource('familles', FamilleController::class);
@@ -22,6 +19,17 @@ Route::post('/user/update', [UserController::class, 'updat'])->name('user.updat'
 Route::post('/user/logout', [UserController::class, 'logout'])->name('user.logout');
 
 
+
+
+
+// Routes pour les détails de commande
+Route::get('/detailcommandes', [DetailcommandeController::class, 'index'])->name('detailcommandes.index');
+Route::get('/detailcommandes/create', [DetailcommandeController::class, 'create'])->name('detailcommandes.create');
+Route::post('/detailcommandes', [DetailcommandeController::class, 'store'])->name('detailcommandes.store');
+Route::get('/detailcommandes/{id}', [DetailcommandeController::class, 'show'])->name('detailcommandes.show');
+Route::get('/detailcommandes/{id}/edit', [DetailcommandeController::class, 'edit'])->name('detailcommandes.edit');
+Route::put('/detailcommandes/{id}', [DetailcommandeController::class, 'update'])->name('detailcommandes.update');
+Route::delete('/detailcommandes/{id}', [DetailcommandeController::class, 'destroy'])->name('detailcommandes.destroy');
 
 
 // Routes for Produits
